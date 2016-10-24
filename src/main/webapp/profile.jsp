@@ -8,7 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <h1><a href="index.jsp"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://i.imgur.com/utX0bXC.jpg" /></a><hr></h1>
+        <h1><a href="/Instagrim"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://i.imgur.com/utX0bXC.jpg" /></a><hr></h1>
         <%
         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
         if (lg != null) {
