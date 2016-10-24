@@ -11,7 +11,7 @@
     </head>
     <body>
         
-        <h1><a href="index.jsp"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://i.imgur.com/utX0bXC.jpg" /></a><hr></h1>
+        <h1><a href="/Instagrim"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://i.imgur.com/utX0bXC.jpg" /></a><hr></h1>
         
         <nav>
             <ul>
@@ -41,10 +41,5 @@
             }
         %>
         </article>
-        <footer>
-            <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-            </ul>
-        </footer>
     </body>
 </html>
