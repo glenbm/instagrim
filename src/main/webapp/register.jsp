@@ -9,7 +9,7 @@
     </head>
     <body>
         
-        <h1><a href="index.jsp"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://i.imgur.com/utX0bXC.jpg" /></a><hr></h1>
+       <h1><a href="/Instagrim"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://i.imgur.com/utX0bXC.jpg" /></a><hr></h1>
         <article>
             <h3>Register as user</h3>
             <form method="POST"  action="Register">
