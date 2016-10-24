@@ -31,9 +31,6 @@ public class Register extends HttpServlet {
         cluster = CassandraHosts.getCluster();
     }
 
-
-
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -48,7 +45,7 @@ public class Register extends HttpServlet {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         
-        User us=new User();
+        User us=new User(username, password);
         us.setCluster(cluster);
         us.RegisterUser(username, password);
         

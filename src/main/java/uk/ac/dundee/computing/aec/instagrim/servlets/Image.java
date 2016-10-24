@@ -69,6 +69,7 @@ public class Image extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      * response)
      */
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         String args[] = Convertors.SplitRequestPath(request);
@@ -101,7 +102,6 @@ public class Image extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/UsersPics.jsp");
         request.setAttribute("Pics", lsPics);
         rd.forward(request, response);
-
     }
 
     private void DisplayImage(int type,String Image, HttpServletResponse response) throws ServletException, IOException {
@@ -115,7 +115,6 @@ public class Image extends HttpServlet {
 
         response.setContentType(p.getType());
         response.setContentLength(p.getLength());
-        //out.write(Image);
         InputStream is = new ByteArrayInputStream(p.getBytes());
         BufferedInputStream input = new BufferedInputStream(is);
         byte[] buffer = new byte[8192];
@@ -157,7 +156,7 @@ public class Image extends HttpServlet {
 
     }
 
-    private void error(String mess, HttpServletResponse response) throws ServletException, IOException {
+   private void error(String mess, HttpServletResponse response) throws ServletException, IOException {
 
         PrintWriter out = null;
         out = new PrintWriter(response.getOutputStream());
@@ -165,5 +164,5 @@ public class Image extends HttpServlet {
         out.println("<h2>" + mess + "</h2>");
         out.close();
         return;
-    }
+    } 
 }

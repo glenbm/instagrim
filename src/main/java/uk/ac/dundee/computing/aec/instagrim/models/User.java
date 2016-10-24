@@ -23,8 +23,10 @@ import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
  */
 public class User {
     Cluster cluster;
-    public User(){
-        
+    String username, password;
+    public User(String username, String password){
+        this.username = username;
+        this.password = password;
     }
     
     public boolean RegisterUser(String username, String Password){
@@ -75,11 +77,42 @@ public class User {
                     return true;
             }
         }
-   
-    
     return false;  
     }
-       public void setCluster(Cluster cluster) {
+    
+    public void setProfilePicture(java.util.UUID picid)
+    {
+        Session session = cluster.connect("instagrim");
+        
+        //Check that the specified picture exists
+        PreparedStatement ps = session.prepare("SELECT picid FROM pics WHERE picid = ?;");
+        BoundStatement boundStatement = new BoundStatement(ps);
+        ResultSet result = session.execute(boundStatement.bind(picid));
+        
+        if(result.isExhausted())
+        {
+        }
+        
+        ps = session.prepare("UPDATE userprofiles SET profile_picture = ? WHERE login = ?;");
+        boundStatement = new BoundStatement(ps);
+        session.execute(boundStatement.bind(picid, this.username));
+    }
+    
+    public java.util.UUID getProfilePicture()
+    {
+        Session session = cluster.connect("instagrim");
+        java.util.UUID picid = null;
+        PreparedStatement ps = session.prepare("SELECT profile_picture FROM userprofiles WHERE login = ?;");
+        BoundStatement boundStatement = new BoundStatement(ps);
+        ResultSet result = session.execute(boundStatement.bind(this.username));
+        if(result.isExhausted() == false){
+            picid = result.one().getUUID("profile_picture");
+        }
+        
+        return picid;
+    }
+    
+    public void setCluster(Cluster cluster) {
         this.cluster = cluster;
     }
 
