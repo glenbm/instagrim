@@ -80,36 +80,23 @@ public class User {
     return false;  
     }
     
-    public void setProfilePicture(java.util.UUID picid)
-    {
+    public void setProfilePicture(java.util.UUID picid){
         Session session = cluster.connect("instagrim");
-        
-        //Check that the specified picture exists
-        PreparedStatement ps = session.prepare("SELECT picid FROM pics WHERE picid = ?;");
-        BoundStatement boundStatement = new BoundStatement(ps);
-        ResultSet result = session.execute(boundStatement.bind(picid));
-        
-        if(result.isExhausted())
-        {
-        }
-        
-        ps = session.prepare("UPDATE userprofiles SET profile_picture = ? WHERE login = ?;");
-        boundStatement = new BoundStatement(ps);
+        boundStatement = new BoundStatement(session.prepare("update userPSrofiles set profile_picture = ? where login = ?;"););
         session.execute(boundStatement.bind(picid, this.username));
     }
     
-    public java.util.UUID getProfilePicture()
-    {
+    public java.util.UUID getProfilePicture(){
         Session session = cluster.connect("instagrim");
         java.util.UUID picid = null;
-        PreparedStatement ps = session.prepare("SELECT profile_picture FROM userprofiles WHERE login = ?;");
-        BoundStatement boundStatement = new BoundStatement(ps);
+        BoundStatement boundStatement = new BoundStatement(session.prepare("select profile_picture from userProfiles where login = ?;"));
         ResultSet result = session.execute(boundStatement.bind(this.username));
         if(result.isExhausted() == false){
             picid = result.one().getUUID("profile_picture");
         }
-        
-        return picid;
+		
+		//return null if no pic exists
+		return picid;
     }
     
     public void setCluster(Cluster cluster) {
